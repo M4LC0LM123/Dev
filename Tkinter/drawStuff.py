@@ -1,3 +1,4 @@
+
 from tkinter import*
 from turtle import*
 import turtle
@@ -51,38 +52,62 @@ def down():
     upButton = Button(root, text='U/D', bg = "#00F7FF",command=up)
     upButton.place(x = 125, y = 125, width = 40, height=40)
 
+def Blue():
+    turtle.pencolor("blue")
+
+def Green():
+    turtle.pencolor("green")
+
+def Red():
+    turtle.pencolor("red")
+
+def Black():
+    turtle.pencolor("black")
+
 forwardButton = Button(root, text='FD', bg = "#00F7FF", command=forward)
 forwardButton.place(x = 125, y = 80, width = 40, height=40)
 
 backwardButton = Button(root, text='BK', bg = "#00F7FF",command=backward)
-backwardButton.place(x = 75, y = 115, width = 40, height=40)
+backwardButton.place(x = 125, y = 170, width = 40, height=40)
 
 upButton = Button(root, text='U/D', bg = "#00F7FF",command=up)
 upButton.place(x = 125, y = 125, width = 40, height=40)
 
 downButton = Button(root, text='U/D', bg = "#00F7FF",command=down)
-downButton.place(x = 125, y = 170, width = 40, height=40)
+downButton.place(x = 125, y = 125, width = 40, height=40)
 
 leftButton = Button(root, text='LT', bg = "#00F7FF",command=left)
-leftButton.place(x = 29, y = 70, width = 40, height=40)
+leftButton.place(x = 80, y = 125, width = 40, height=40)
 
 rightButton = Button(root, text='RT', bg = "#00F7FF",command=right)
-rightButton.place(x = 119, y = 70, width = 40, height=40)
+rightButton.place(x = 170, y = 125, width = 40, height=40)
 
 upLeftButton = Button(root, text='ULT', bg = "#00F7FF",command=upLeft)
-upLeftButton.place(x = 29, y = 25, width = 40, height=40)
+upLeftButton.place(x = 80, y = 80, width = 40, height=40)
 
 downLeftButton = Button(root, text='DLT', bg = "#00F7FF",command=downLeft)
-downLeftButton.place(x = 29, y = 115, width = 40, height=40)
+downLeftButton.place(x = 80, y = 170, width = 40, height=40)
 
 upRightButton = Button(root, text='URT', bg = "#00F7FF",command=upRight)
-upRightButton.place(x = 119, y = 25, width = 40, height=40)
+upRightButton.place(x = 170, y = 80, width = 40, height=40)
 
 downRightButton = Button(root, text='DRT', bg = "#00F7FF",command=downRight)
-downRightButton.place(x = 119, y = 115, width = 40, height=40)
+downRightButton.place(x = 170, y = 170, width = 40, height=40)
 
 clearButton = Button(root, text='CLR', bg = "#00F7FF",command=Clear)
-clearButton.place(x = 5, y = 155, width = 40, height=40)
+clearButton.place(x = 5, y = 255, width = 40, height=40)
+
+blueButton = Button(root, bg = "blue", command=Blue)
+blueButton.place(x = 255, y = 255, height=40, width=40)
+
+redButton = Button(root, bg = "red", command=Red)
+redButton.place(x = 210, y = 255, height=40, width=40)
+
+greenButton = Button(root, bg = "green", command=Green)
+greenButton.place(x = 165, y = 255, height=40, width=40)
+
+blackButton = Button(root, bg = "black", command=Black)
+blackButton.place(x = 120, y = 255, height=40, width=40)
 
 root.geometry("300x300")
 root.mainloop()
