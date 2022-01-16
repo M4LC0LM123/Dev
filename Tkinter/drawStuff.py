@@ -52,7 +52,7 @@ def down():
     upButton.place(x = 125, y = 125, width = 40, height=40)
 
 forwardButton = Button(root, text='FD', bg = "#00F7FF", command=forward)
-forwardButton.place(x = 75, y = 25, width = 40, height=40)
+forwardButton.place(x = 125, y = 80, width = 40, height=40)
 
 backwardButton = Button(root, text='BK', bg = "#00F7FF",command=backward)
 backwardButton.place(x = 75, y = 115, width = 40, height=40)
@@ -61,7 +61,7 @@ upButton = Button(root, text='U/D', bg = "#00F7FF",command=up)
 upButton.place(x = 125, y = 125, width = 40, height=40)
 
 downButton = Button(root, text='U/D', bg = "#00F7FF",command=down)
-downButton.place(x = 125, y = 125, width = 40, height=40)
+downButton.place(x = 125, y = 170, width = 40, height=40)
 
 leftButton = Button(root, text='LT', bg = "#00F7FF",command=left)
 leftButton.place(x = 29, y = 70, width = 40, height=40)
