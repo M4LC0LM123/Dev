@@ -7,6 +7,3 @@ function jump(){
     },500);
 }
 
-var checkDead = setInterval(() => {
-    
-}, interval);

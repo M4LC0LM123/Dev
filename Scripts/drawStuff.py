@@ -64,7 +64,6 @@ def Red():
 def Black():
     turtle.pencolor("black")
 
-
 forwardButton = Button(root, text='FD', bg = "#00F7FF", command=forward)
 forwardButton.place(x = 125, y = 80, width = 40, height=40)
 

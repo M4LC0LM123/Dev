@@ -10,10 +10,10 @@
 }
 #character{
     width: 20px;
-    height: 50px;
-    background-color: red;
+    height: 20px;
+    background-color: green;
     position:relative;
-    top: 150px;
+    top: 180px;
 }
 .animate{
     animation: jump 0.5s linear;
@@ -26,11 +26,11 @@
 }
 
 #block{
-    background-color: blue;
-    width: 20px;
-    height: 20px;
+    background-color: red;
+    width: 30px;
+    height: 30px;
     position: relative;
-    top: 130px;
+    top: 150px;
     left: 500px;
     animation: block 1s infinite linear;
 }
