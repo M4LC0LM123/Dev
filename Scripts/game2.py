@@ -59,6 +59,7 @@ while not done:
         y = 400
         healthUpX = random.randint(0, 500 - 40)
         healthUpY = random.randint(40, 500 - 40)
+        vel = 2
         
     screen.fill(GREY)
 
