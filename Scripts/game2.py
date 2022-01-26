@@ -1,4 +1,3 @@
-
 import pygame
 import random
 pygame.init()
@@ -8,9 +7,11 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
+GREY = (105,105,105)
 
 size = (500, 500)
 screen = pygame.display.set_mode(size)
+pygame.mouse.set_visible(False)
 
 pygame.display.set_caption("game")
 
@@ -23,15 +24,10 @@ y = 400
 width = 40
 height = 40
 vel = 2
+health = 300
 
-wallX = 0
-wallY = random.randint(-40, 40)
-wallY2 = random.randint(-40, 40)
-wallWidth = random.randint(150, 200)
-wallWidth2 = random.randint(150, 200)
-wallHeight = 40
-wallVel = 0.1
-wallVelMax = 25
+healthUpX = random.randint(0, 500 - 40)
+healthUpY = random.randint(40, 500 - 40)
 
 while not done:
     for event in pygame.event.get():
@@ -52,31 +48,23 @@ while not done:
     if keys[pygame.K_DOWN] or keys[pygame.K_s]:
         y += vel
         
-    screen.fill(BLACK)
+    screen.fill(GREY)
 
-    wallVel += 0.1
-
-    if wallVel >= wallVelMax:
-        wallVel = wallVelMax
-
-    wallY += wallVel
-    wallY2 += wallVel
-
-    if wallY >= 500:
-        wallY = random.randint(-40, 40)
-        wallWidth = random.randint(150, 200)
-    
-    if wallY2 >= 500:
-        wallY2 = random.randint(-40, 40)
-        wallWidth2 = random.randint(150, 200)
+    health -= 1
 
     player = pygame.draw.rect(screen, GREEN, [x - width, y - height, width, height])
-    wall = pygame.draw.rect(screen, RED, [wallX, wallY, wallWidth, wallHeight], 0)
-    wall2 = pygame.draw.rect(screen, RED, [500 - wallWidth, wallY2, wallWidth2, wallHeight], 0)
+    healthUp = pygame.draw.rect(screen, WHITE, [healthUpX, healthUpY, 40, 40])
+    wall = pygame.draw.rect(screen, WHITE, [0, 0, 500, 40])
+    healthBar = pygame.draw.rect(screen, RED, [0, 0, health, 40])
 
-    if player.colliderect(wall):
+    if health <= 0:
         width = 0
         height = 0
+
+    if player.colliderect(healthUp):
+        health = 300
+        healthUpX = random.randint(0, 500 - 40)
+        healthUpY = random.randint(40, 500 - 40)
 
     pygame.display.flip()
     clock.tick(60)
