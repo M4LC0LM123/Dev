@@ -24,7 +24,10 @@ y = 400
 width = 40
 height = 40
 vel = 2
-health = 300
+health = 500
+healthMax = 500
+score = 0
+playerAlive = True
 
 healthUpX = random.randint(0, 500 - 40)
 healthUpY = random.randint(40, 500 - 40)
@@ -47,24 +50,51 @@ while not done:
 
     if keys[pygame.K_DOWN] or keys[pygame.K_s]:
         y += vel
+    if keys[pygame.K_SPACE] and playerAlive == False:
+        playerAlive = True
+        score = 0
+        health = 500
+        healthMax = 500
+        x = 100
+        y = 400
+        healthUpX = random.randint(0, 500 - 40)
+        healthUpY = random.randint(40, 500 - 40)
         
     screen.fill(GREY)
 
     health -= 1
 
-    player = pygame.draw.rect(screen, GREEN, [x - width, y - height, width, height])
-    healthUp = pygame.draw.rect(screen, WHITE, [healthUpX, healthUpY, 40, 40])
-    wall = pygame.draw.rect(screen, WHITE, [0, 0, 500, 40])
-    healthBar = pygame.draw.rect(screen, RED, [0, 0, health, 40])
+    if score >= 20:
+        healthMax = 250
+    if score >= 40:
+        healthMax = 125
+        vel = 4
+
+    font = pygame.font.Font('freesansbold.ttf', 64)
+    text = font.render(str(score), True, (192,192,192))
+    screen.blit(text, (250 - 16, 250))
+
+    if playerAlive == True:
+        player = pygame.draw.rect(screen, GREEN, [x - width, y - height, width, height])
+        healthUp = pygame.draw.rect(screen, WHITE, [healthUpX, healthUpY, 40, 40])
+        wall = pygame.draw.rect(screen, WHITE, [0, 0, 500, 40])
+        healthBar = pygame.draw.rect(screen, RED, [0, 0, health, 40])
 
     if health <= 0:
-        width = 0
-        height = 0
+        playerAlive = False
 
     if player.colliderect(healthUp):
-        health = 300
+        health = healthMax
         healthUpX = random.randint(0, 500 - 40)
         healthUpY = random.randint(40, 500 - 40)
+        score += 1
+
+    if playerAlive == False:
+        font2 = pygame.font.Font('freesansbold.ttf', 32)
+        text2 = font2.render("You Died", True, (255,255,255))
+        text3 = font2.render("Space to reset", True, (255,255,255))
+        screen.blit(text2, (250 - 64, 250 - 32))
+        screen.blit(text3, (250 - 115, 250 + 64))
 
     pygame.display.flip()
     clock.tick(60)
