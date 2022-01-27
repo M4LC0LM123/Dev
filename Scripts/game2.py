@@ -1,5 +1,7 @@
+
 import pygame
 import random
+
 pygame.init()
 
 BLACK = (0, 0, 0)
