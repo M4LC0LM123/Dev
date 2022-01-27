@@ -24,6 +24,8 @@ width = 40
 height = 40
 vel = 5
 
+
+
 while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -37,8 +39,6 @@ while not done:
     if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
         x += vel
 
-    if keys[pygame.K_SPACE]:
-        pygame.draw.rect(screen, RED, [5, 5, 20, 20])
         
     screen.fill(BLACK)
 
