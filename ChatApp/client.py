@@ -5,7 +5,7 @@ import sys
 
 HEADER_LENGTH = 10
 
-IP = "192.168.1.109"
+IP = input("IP: ")
 PORT = 5050
 my_username = input("Username: ")
 
