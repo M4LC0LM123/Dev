@@ -3,7 +3,7 @@ from threading import Thread
 
 # server's IP address
 SERVER_HOST = input("IP: ")
-SERVER_PORT = 5050 # port we want to use
+SERVER_PORT = 5050 
 separator_token = "<SEP>" # we will use this to separate the client name & message
 
 client_sockets = set()
