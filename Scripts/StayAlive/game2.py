@@ -31,6 +31,13 @@ healthMax = 500
 score = 0
 playerAlive = True
 
+def SaveScore():
+    f = open("highScores.txt", "a")
+    f.write(str(score))
+    f.close()
+    f = open("highScores.txt", "r")
+    print(f.read())
+
 healthUpX = random.randint(0, 500 - 40)
 healthUpY = random.randint(40, 500 - 40)
 
@@ -52,6 +59,8 @@ while not done:
 
     if keys[pygame.K_DOWN] or keys[pygame.K_s]:
         y += vel
+    if keys[pygame.K_LSHIFT] or keys[pygame.K_RSHIFT]:
+        SaveScore()
     if keys[pygame.K_SPACE] and playerAlive == False:
         playerAlive = True
         score = 0
