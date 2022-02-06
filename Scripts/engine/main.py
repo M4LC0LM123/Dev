@@ -1,21 +1,67 @@
 from tkinter import *
 import pygame
+from sprite import *
 
 root = Tk()
 
-runBtn = Button(root, text="Run")
-runBtn.place(250, 250, 40, 40)
+
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+GREY = (105,105,105)
 
 def main():
-    pygame.init() #initialize pygame
-    SCREEN_WIDTH = 600 # width (in px)
-    SCREEN_HEIGHT = 800 # height (in px)
+    pygame.init()
 
-    WIN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # creates a screen of 600px X 800px
+    screen = pygame.display.set_mode((500,500))
+    pygame.display.set_caption("Game")
 
-    while True:
-        pygame.display.update() # updates the screen
+    x = 50
+    y = 50
+    width = 40
+    height = 40
+    vel = 2
+
+    run = True
+    clock = pygame.time.Clock()
+
+    while run:
+        clock.tick(60)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+        keys = pygame.key.get_pressed()
+        
+        if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+            x -= vel
+
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+            x += vel
+
+        if keys[pygame.K_UP] or keys[pygame.K_w]:
+            y -= vel
+
+        if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+            y += vel
+        
+        screen.fill((0,0,0))
+        player = drawSprite(screen, GREEN, x, y, width, height)  
+        player.drawSelf()
+        wall = drawSprite(screen, WHITE, 250, 250, width, height)
+        wall.drawSelf()
+        
+        pygame.display.update() 
+        
+
+
+runBtn = Button(root, text="Run", command=main)
+runBtn.place(x = 220, y = 210, width=60, height=40)
 
 root.geometry("500x500")
 root.mainloop()
+pygame.quit()
 input()

@@ -33,7 +33,7 @@ boxCollidingRight = False
 boxCollidingLeft = False
 boxColliding = False
 outlineX = 40
-outlineY = 420
+outlineY = 420       
 
 #collision variables
 collidingLeft = False
