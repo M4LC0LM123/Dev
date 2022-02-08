@@ -31,9 +31,9 @@ def main():
     isRunning = False
 
     #player variables
-    x1 = 50
+    x1 = 75
     y1 = 50
-    x2 = 450
+    x2 = 900
     y2 = 50
     width = 40
     height = 40
@@ -153,37 +153,37 @@ def main():
             #wall.drawSelf()
         
             #check for player one collisions
-            if DownCldr.colliderect(wall) or DownCldr.colliderect(wall2) or DownCldr.colliderect(wall3)  or DownCldr.colliderect(wall4) or DownCldr.colliderect(wall5):
+            if DownCldr.colliderect(wall) or DownCldr.colliderect(wall2) or DownCldr.colliderect(wall3)  or DownCldr.colliderect(wall4) or DownCldr.colliderect(wall5) or DownCldr.colliderect(playerTwo):
                 gravity = 0
                 air_timer = 0
             else:
                 gravity = 5
                 air_timer += 1
 
-            if LeftCldr.colliderect(wall2) or LeftCldr.colliderect(wall4):
+            if LeftCldr.colliderect(wall2) or LeftCldr.colliderect(wall4) or DownCldr.colliderect(playerTwo):
                 collidingLeft = True
             else:
                 collidingLeft = False
 
-            if RightCldr.colliderect(wall3):
+            if RightCldr.colliderect(wall3) or DownCldr.colliderect(playerTwo):
                 collidingRight = True
             else:
                 collidingRight = False
 
             #check for player two collisions
-            if DownCldr2.colliderect(wall) or DownCldr2.colliderect(wall2) or DownCldr2.colliderect(wall3) or DownCldr2.colliderect(wall4) or DownCldr2.colliderect(wall5):
+            if DownCldr2.colliderect(wall) or DownCldr2.colliderect(wall2) or DownCldr2.colliderect(wall3) or DownCldr2.colliderect(wall4) or DownCldr2.colliderect(wall5) or DownCldr2.colliderect(playerOne):
                 gravity2 = 0
                 air_timer2 = 0
             else:
                 gravity2 = 5
                 air_timer2 += 1
 
-            if LeftCldr2.colliderect(wall2) or LeftCldr2.colliderect(wall4):
+            if LeftCldr2.colliderect(wall2) or LeftCldr2.colliderect(wall4) or DownCldr2.colliderect(playerOne):
                 collidingLeft2 = True
             else:
                 collidingLeft2 = False
 
-            if RightCldr2.colliderect(wall3):
+            if RightCldr2.colliderect(wall3) or DownCldr2.colliderect(playerOne):
                 collidingRight2 = True
             else:
                 collidingRight2 = False
@@ -192,9 +192,16 @@ def main():
             startBtn = pygame.draw.rect(screen, WHITE, (500 - 30, 300 - 20, 60, 40))
             pygame.mouse.set_cursor(*pygame.cursors.tri_left)
 
-            x1 = 50
+            font = pygame.font.Font('freesansbold.ttf', 16)
+            font2 = pygame.font.Font('freesansbold.ttf', 64)
+            text = font.render("START!", True, (BLACK))
+            text2 = font2.render("SQUARES!", True, (WHITE))
+            screen.blit(text, (500 - 30, 300 - 10))
+            screen.blit(text2, (500 - 150, 150))
+
+            x1 = 75
             y1 = 50
-            x2 = 450
+            x2 = 900
             y2 = 50
 
             weapons.clear()
