@@ -123,6 +123,7 @@ while True: # game loop
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+            
         if event.type == KEYDOWN:
             if event.key == K_RIGHT or event.key == K_d:
                 moving_right = True

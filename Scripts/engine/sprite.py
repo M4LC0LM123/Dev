@@ -10,6 +10,8 @@ class drawSprite:
         self.height = height
 
 
+
     def drawSelf(self):
         pygame.draw.rect(self.screen, self.color, (self.x, self.y, self.width, self.height))
+
 
