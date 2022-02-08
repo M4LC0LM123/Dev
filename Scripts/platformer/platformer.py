@@ -1,3 +1,4 @@
+from dis import dis
 import pygame, sys
 
 clock = pygame.time.Clock()
@@ -13,6 +14,12 @@ screen = pygame.display.set_mode(WINDOW_SIZE,0,32)
 
 display = pygame.Surface((300, 200))
 
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+GREY = (105,105,105)
 
 player_image = pygame.image.load('player.png')
 
@@ -21,19 +28,18 @@ TILE_SIZE = grass_image.get_width()
 
 dirt_image = pygame.image.load('dirt.png')
 
-game_map = [['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
-            ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
-            ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
-            ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
-            ['0','0','0','0','0','0','0','2','2','2','2','2','0','0','0','0','0','0','0'],
-            ['0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0'],
-            ['2','2','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','2','2'],
-            ['1','1','2','0','2','2','2','2','2','2','2','2','2','2','2','0','2','1','1'],
-            ['1','1','1','0','1','1','1','1','1','1','1','1','1','1','1','0','1','1','1'],
-            ['1','1','1','0','1','1','1','0','0','0','0','0','1','1','1','0','1','1','1'],
-            ['1','1','1','0','0','0','0','0','0','0','0','0','0','0','0','0','1','1','1'],
-            ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'],
-            ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1']]
+level1 = 'map'
+level2 = 'map2'
+level = 'map'
+
+f = open(level + '.txt')
+data = f.read()
+f.close()
+data = data.split('\n')
+game_map = []
+for row in data:
+    game_map.append(list(row))
+
 
 def collision_test(rect, tiles):
     hit_list = []
@@ -70,7 +76,10 @@ moving_left = False
 player_y_momentum = 0
 air_timer = 0
 
-player_rect = pygame.Rect(50, 50, player_image.get_width() - 6, player_image.get_height())
+player_width = player_image.get_width()
+player_height = player_image.get_height()
+
+player_rect = pygame.Rect(50, 50, player_width - 6, player_height)
 test_rect = pygame.Rect(100,100,100,50)
 
 while True: # game loop
@@ -115,17 +124,18 @@ while True: # game loop
             pygame.quit()
             sys.exit()
         if event.type == KEYDOWN:
-            if event.key == K_RIGHT:
+            if event.key == K_RIGHT or event.key == K_d:
                 moving_right = True
-            if event.key == K_LEFT:
+            if event.key == K_LEFT or event.key == K_a:
                 moving_left = True
-            if event.key == K_UP:
+            if event.key == K_UP or event.key == K_w or event.key == K_SPACE:
                 if air_timer < 6:
                     player_y_momentum = -5
+
         if event.type == KEYUP:
-            if event.key == K_RIGHT:
+            if event.key == K_RIGHT or event.key == K_d:
                 moving_right = False
-            if event.key == K_LEFT:
+            if event.key == K_LEFT or event.key == K_a:
                 moving_left = False
 
     surf = pygame.transform.scale(display, WINDOW_SIZE)

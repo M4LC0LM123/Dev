@@ -22,13 +22,18 @@ def main():
     y = 50
     width = 40
     height = 40
-    vel = 2
+    vel = 10
+
+    moving_up = False
+    moving_down = False
+    moving_right = True
+    moving_left = False
 
     run = True
     clock = pygame.time.Clock()
 
     while run:
-        clock.tick(60)
+        clock.tick(10)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -37,15 +42,39 @@ def main():
         keys = pygame.key.get_pressed()
         
         if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+            moving_left = True
+            moving_right = False
+            moving_down = False
+            moving_up = False
+
+        if moving_left == True:
             x -= vel
 
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+            moving_left = False
+            moving_right = True
+            moving_down = False
+            moving_up = False
+
+        if moving_right == True:
             x += vel
 
         if keys[pygame.K_UP] or keys[pygame.K_w]:
+            moving_left = False
+            moving_right = False
+            moving_down = False
+            moving_up = True
+
+        if moving_up == True:
             y -= vel
 
         if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+            moving_left = False
+            moving_right = False
+            moving_down = True
+            moving_up = False
+
+        if moving_down == True:
             y += vel
         
         screen.fill((0,0,0))
